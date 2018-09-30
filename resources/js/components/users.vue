@@ -285,7 +285,7 @@
                    form:new Form({
 
                           
-
+                            id:'',
                            name:'',
 
                            email:'',
@@ -309,7 +309,7 @@
            methods:{
 
 
-               updateUser(id){   
+               updateUser(){   
                    this.$Progress.start(); 
                    this.form.put('api/users/'+this.form.id)
                    .then(()=>{

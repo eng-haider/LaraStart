@@ -71930,6 +71930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             users: {},
             form: new Form({
 
+                id: '',
                 name: '',
 
                 email: '',
@@ -71949,7 +71950,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        updateUser: function updateUser(id) {
+        updateUser: function updateUser() {
             var _this = this;
 
             this.$Progress.start();
