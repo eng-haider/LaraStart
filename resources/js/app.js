@@ -8,16 +8,77 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import moment from 'moment';
+import { Form, HasError, AlertError } from 'vform'
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+window.Form =Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
 
+import swal from 'sweetalert2'
+
+window.swal=swal;
+const toast = swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+window.toast=toast;
+
+
+
+window.Fire=new Vue();
+
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+
+import VueProgressBar from 'vue-progressbar'
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '3px'
+})
+
+
+
+let routes = [
+    { path: '/dashbourd', component: require('./components/dashbourd.vue') },
+    { path: '/profile',  component: require('./components/profile.vue') },
+    { path: '/users',  component: require('./components/users.vue') }
+  ]
+
+    /**
+     * Next, we will create a fresh Vue application instance and attach it to
+     * the page. Then, you may begin adding components to this application
+     * or customize the JavaScript scaffolding to fit your unique needs.
+     */
+
+const router = new VueRouter({
+    mode: 'history',
+    routes // short for `routes: routes`
+  })
+
+
+  Vue.filter('upText',function(text)
+  {  
+   return text.charAt(0).toUpperCase() + text.slice(1)
+  });
+
+
+  Vue.filter('myDate',function(created)
+  {  
+   return moment().format('MMMM Do YYYY');
+  });
+
+
+  
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });
-//dd
+
