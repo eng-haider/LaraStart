@@ -46,6 +46,7 @@ Vue.use(VueProgressBar, {
 
 let routes = [
     { path: '/dashbourd', component: require('./components/dashbourd.vue') },
+    { path: '/developer', component: require('./components/Developer.vue') },
     { path: '/profile',  component: require('./components/profile.vue') },
     { path: '/users',  component: require('./components/users.vue') }
   ]
@@ -72,6 +73,23 @@ const router = new VueRouter({
   {  
    return moment().format('MMMM Do YYYY');
   });
+
+
+
+  Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue')
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue')
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue')
+);
 
 
   

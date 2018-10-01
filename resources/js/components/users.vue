@@ -3,9 +3,9 @@
 
    <div class="container">
 
-   <div class="row">
+   <div class="row ">
 
-       <div class="col-md-12">
+       <div class="col-md-12 mt-3">
 
          <div class="box">
 
@@ -56,9 +56,9 @@
 
            <!-- /.box-header -->
 
-           <div class="card-body table-responsive p-0">
+           <div class="card-body table-responsive p-0" style="border:1px solid #ddd">
 
-             <table class="table table-hover">
+             <table class="table table-hover" >
 
                <tbody>
 
@@ -313,7 +313,12 @@
                    this.$Progress.start(); 
                    this.form.put('api/users/'+this.form.id)
                    .then(()=>{
-                       //success
+                    $('#adduser').modal('hide')
+                    toast({
+                    type: 'success',
+                    title: 'User Update successfully '
+                    })
+                    this.$Progress.finish();
                    })
                    .catch(()=>{
 
