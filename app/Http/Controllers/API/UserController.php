@@ -71,6 +71,23 @@ class UserController extends Controller
         //
     }
 
+
+    public function profile()
+    {
+
+            return auth('api')->user();
+
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user=auth('api')->user();
+        return ['message'=>"Success"];
+
+    }
+
+
+
     /**
      * Update the specified resource in storage.
      *

@@ -383,7 +383,8 @@
 
 
                loadUsers() {
-                   axios.get("api/users").then(({data})=>(this.users=data.data));
+                   axios.get("api/users")
+                   .then(({data})=>(this.users=data.data));
                },
 
                createUser()
