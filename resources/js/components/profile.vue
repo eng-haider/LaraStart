@@ -19,7 +19,7 @@
               <h5 class="widget-user-desc">Web Designer</h5>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle" src="" alt="User Avatar">
+              <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar">
             </div>
             <div class="box-footer">
               <div class="row">
@@ -91,14 +91,21 @@
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
                     <div class="col-sm-10 ">
-                      <input type="text" v-model="form.name"  class="form-control" id="inputName" placeholder="Name">
+                      <input v-model="form.name" type="text" name="name"
+
+                            placeholder="Name"
+
+                           class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
+
+                       <has-error :form="form" field="name"></has-error>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
                     <div class="col-sm-10">
-                      <input type="email" v-model="form.email"  class="form-control" id="inputEmail" placeholder="Email">
+                      <input v-model="form.email" type="text" name="email" placeholder="Email" class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
+                       <has-error :form="form" field="email"></has-error>
                     </div>
                   </div>
                 
@@ -124,8 +131,11 @@
                     <label for="inputSkills" class="col-sm-2 control-label">Passport</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                   
+                       <input v-model="form.password" type="password" name="password"  placeholder="Password" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                       <has-error :form="form" field="password"></has-error>
                     </div>
+
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
@@ -200,14 +210,20 @@
 
            methods:{
 
+             getProfilePhoto(){
+               return "img/profile/"+ this.form.photo;
+
+             },
+
              updateInfo(){
+               this.$Progress.start(); 
                this.form.put('api/profile')
                .then(()=>{
-
+                       this.$Progress.start(); 
                })
 
               .catch(()=>{
-
+                    this.$Progress.fail(); 
                })
         
         
@@ -220,17 +236,32 @@
 
                updateProfile(e)
                {
+                
                  let file=e.target.files[0];
- 
                  let reader=new FileReader();
 
-                 
-
+                 if(file['size']<2111567)
+                 {
                  reader.onloadend=(file)=>{
                  this.form.photo=reader.result;
                  }
-
                  reader.readAsDataURL(file); 
+
+                 }
+
+                 else
+                 {
+                   swal({
+                     type:'error',
+                     title:'Oops',
+                     text:'You are uploading a larage file',
+                   })
+                 }
+
+                 
+
+               
+                 
 
                }
 
