@@ -71985,7 +71985,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.widget-user-header\r\n{\r\n    background-position: center center;\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\n}\r\n", ""]);
+exports.push([module.i, "\n.widget-user-header\r\n{\r\n    background-position: center center;\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\n}\n.widget-user-header\r\n{\r\n      height: 228px !important;\n}\r\n", ""]);
 
 // exports
 
@@ -72204,6 +72204,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -72235,7 +72239,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     getProfilePhoto: function getProfilePhoto() {
-      return "img/profile/" + this.form.photo;
+      var photo = this.form.photo.length > 200 ? this.form.photo : "img/profile/" + this.form.photo;
+      return photo;
     },
     updateInfo: function updateInfo() {
       var _this = this;
@@ -72261,10 +72266,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var file = e.target.files[0];
       var reader = new FileReader();
 
-      if (file['size'] < 2111567) {
+      if (file['size'] < 2111775) {
         reader.onloadend = function (file) {
+
           _this3.form.photo = reader.result;
         };
+
         reader.readAsDataURL(file);
       } else {
         swal({

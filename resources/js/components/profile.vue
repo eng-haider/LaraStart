@@ -6,6 +6,10 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.widget-user-header
+{
+      height: 228px !important;
+}
 </style>
 
 <template>
@@ -14,7 +18,7 @@
             <div class="col-md-12">
                 <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url('./img/user-cover.jpg') center center; background-repeat: no-repeat;background-size: cover;">
+             <div class="widget-user-header bg-black" style="background: url('./img/user-cover.jpg') center center; background-repeat: no-repeat;background-size: cover;">
               <h3 class="widget-user-username">Elizabeth Pierce</h3>
               <h5 class="widget-user-desc">Web Designer</h5>
             </div>
@@ -211,7 +215,8 @@
            methods:{
 
              getProfilePhoto(){
-               return "img/profile/"+ this.form.photo;
+              let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
+              return photo;
 
              },
 
@@ -240,12 +245,14 @@
                  let file=e.target.files[0];
                  let reader=new FileReader();
 
-                 if(file['size']<2111567)
+                 if(file['size'] < 2111775)
                  {
                  reader.onloadend=(file)=>{
-                 this.form.photo=reader.result;
+                
+                 this.form.photo = reader.result;
                  }
-                 reader.readAsDataURL(file); 
+              
+                 reader.readAsDataURL(file);
 
                  }
 
