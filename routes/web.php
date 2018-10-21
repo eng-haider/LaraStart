@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-شسيشسي
-,؟
 Route::get('{path}', 'HomeController@index');
+
+
+<?php ?>
